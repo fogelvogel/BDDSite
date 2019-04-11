@@ -1,5 +1,6 @@
 package StepDefinition;		
 
+import org.junit.Assert;
 import org.openqa.selenium.By;		
 import org.openqa.selenium.WebDriver;		
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,7 +22,8 @@ public class Steps {
 
 	@Then("^The page is visible$")
 	public void the_page_is_visible() throws Throwable {
-		  System.out.println("the page is visible");
+		 Assert.assertNotNull(driver.findElement(By.cssSelector("html")));
+		 driver.close();
 	}
 
 
