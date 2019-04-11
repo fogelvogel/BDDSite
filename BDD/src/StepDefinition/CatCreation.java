@@ -59,6 +59,24 @@ public class CatCreation {
 	@Then("^new cat should be visible$")
 	public void new_cat_should_be_visible() throws Throwable {
 		Assert.assertNotNull(driver.findElement(By.cssSelector("td")));
+		 
+	}
+	
+	@When("^i clicked show button$")
+	public void i_clicked_show_button() throws Throwable {
+		driver.findElement(By.cssSelector("a")).click();
+	   
+	}
+
+	@When("^clicked delete button$")
+	public void clicked_delete_button() throws Throwable {
+		driver.findElement(By.cssSelector("button")).click();
+		driver.switchTo().alert().accept();
+	}
+
+	@Then("^new cat should not be visible$")
+	public void new_cat_should_not_be_visible() throws Throwable {
+		Assert.assertEquals(1, driver.findElements(By.cssSelector("td")).size());
 		 driver.close();
 	}
 

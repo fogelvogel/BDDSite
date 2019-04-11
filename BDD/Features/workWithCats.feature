@@ -29,3 +29,6 @@ Feature: Checking CRUD
   	And i typed "boevoi" in harakter field
   	And i clicked save button
   	Then new cat should be visible
+  	When i clicked show button
+  	And clicked delete button
+  	Then new cat should not be visible
