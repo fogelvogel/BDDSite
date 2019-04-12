@@ -2,7 +2,8 @@ package StepDefinition;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;		
-import org.openqa.selenium.WebDriver;		
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import cucumber.api.java.en.Given;	
@@ -12,6 +13,7 @@ import cucumber.api.java.en.Then;
 public class CatCreation {
 	
 	WebDriver driver;
+	WebElement[] columns = new WebElement[5];
 	
 	@Given("^i opened browser window$")
 	public void i_opened_browser_window() throws Throwable {
@@ -59,6 +61,27 @@ public class CatCreation {
 	public void new_cat_should_be_visible() throws Throwable {
 		Assert.assertNotNull(driver.findElement(By.cssSelector("td")));
 		 
+	}
+	
+	@Then("^first cell should be \"(.*?)\"$")
+	public void first_cell_should_be(String arg1) throws Throwable {
+	Assert.assertEquals(arg1, driver.findElements(By.cssSelector("td")).get(1).getText());
+	
+	}
+
+	@Then("^second cell should be \"(.*?)\"$")
+	public void second_cell_should_be(String arg1) throws Throwable {
+		Assert.assertEquals(arg1, driver.findElements(By.cssSelector("td")).get(2).getText());
+	}
+
+	@Then("^third cell should be \"(.*?)\"$")
+	public void third_cell_should_be(String arg1) throws Throwable {
+		Assert.assertEquals(arg1, driver.findElements(By.cssSelector("td")).get(3).getText());
+	}
+
+	@Then("^fourth cell should be \"(.*?)\"$")
+	public void fourth_cell_should_be(String arg1) throws Throwable {
+		Assert.assertEquals(arg1, driver.findElements(By.cssSelector("td")).get(4).getText());
 	}
 	
 	@When("^i clicked show button$")

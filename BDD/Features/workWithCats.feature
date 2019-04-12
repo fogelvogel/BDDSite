@@ -19,7 +19,7 @@
 @tag
 Feature: Checking CRUD
 
-  @tag1
+
   Scenario: Add new cat to the base
     Given i opened browser window
   	When i clicked new button
@@ -29,6 +29,24 @@ Feature: Checking CRUD
   	And i typed "boevoi" in harakter field
   	And i clicked save button
   	Then new cat should be visible
+  	When i clicked show button
+  	And clicked delete button
+  	Then new cat should not be visible
+  	
+  	@current
+  	Scenario: Add new cat and check fields
+  	Given i opened browser window
+  	When i clicked new button
+  	And i typed "murzik" in imya field
+  	And i typed "sfinks" in poroda field
+  	And i typed "rozovi" in cvet field
+  	And i typed "boevoi" in harakter field
+  	And i clicked save button
+  	Then new cat should be visible
+  	Then first cell should be "murzik"
+  	Then second cell should be "sfinks"
+  	Then third cell should be "rozovi"
+  	Then fourth cell should be "boevoi"
   	When i clicked show button
   	And clicked delete button
   	Then new cat should not be visible
