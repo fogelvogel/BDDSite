@@ -6,7 +6,15 @@
 <div id="wrapper">
 <header></header>
     <h1>Cat index</h1>
-
+	
+		<form method="get">
+		<select name="sort">
+		<option value="asc">по возрастанию</option>
+		<option value="dsc">по убыванию</option>
+		</select>
+		<input class="query-input" name="query"/>
+		<button type="submit">OK</button>
+		</form>
     <table class="table">
         <thead>
             <tr>
@@ -18,6 +26,7 @@
                 <th>actions</th>
             </tr>
         </thead>
+		
         <tbody>
         {% for cat in cats %}
             <tr>
@@ -39,7 +48,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('cat_new') }}">Create new</a>
+    <a class="new-cat" href="{{ path('cat_new') }}">Create new</a>
 	<footer></footer>
 	</div>
 {% endblock %}

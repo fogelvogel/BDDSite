@@ -18,10 +18,36 @@ class CatController extends AbstractController
     /**
      * @Route("/", name="cat_index", methods={"GET"})
      */
-    public function index(CatRepository $catRepository): Response
+    public function index(Request $request, CatRepository $catRepository): Response
     {
+        $sort = $request->query->get('sort');
+        $query = $request->query->get('query');
+        $cats = $catRepository->findAll();
+
+        if ($sort) {
+            if ($sort === 'asc') {
+                usort($cats, function ($a, $b) {
+                    return strcmp(strtolower($a->getImya()), strtolower($b->getImya()));
+                });
+            } else if ($sort === 'dsc') {
+                usort($cats, function ($a, $b) {
+                    return -strcmp(strtolower($a->getImya()), strtolower($b->getImya()));
+                });
+            }
+    
+
+        }
+
+        if ($query) {
+            $cats = array_filter($cats, function ($v, $k) use ($query) {
+                return strpos(strtolower($v->getImya()), strtolower($query)) !== false;
+            }, ARRAY_FILTER_USE_BOTH);
+        }
+
+        // echo '<pre>'; print_r($cats); echo '</pre>'; die();
+
         return $this->render('cat/index.html.twig', [
-            'cats' => $catRepository->findAll(),
+            'cats' => $cats,
         ]);
     }
 

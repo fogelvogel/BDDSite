@@ -12,7 +12,7 @@ import cucumber.api.java.en.Then;
 
 public class CatCreation {
 	
-	WebDriver driver;
+	public static WebDriver driver;
 	WebElement[] columns = new WebElement[5];
 	
 	@Given("^i opened browser window$")
@@ -26,7 +26,7 @@ public class CatCreation {
 
 	@When("^i clicked new button$")
 	public void i_clicked_new_button() throws Throwable {
-		driver.findElement(By.cssSelector("a")).click();
+		CatCreation.driver.findElement(By.cssSelector(".new-cat")).click();
 	   
 	}
 
