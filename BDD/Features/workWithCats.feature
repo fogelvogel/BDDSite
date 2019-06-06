@@ -33,7 +33,6 @@ Feature: Checking CRUD
   	And clicked delete button
   	Then new cat should not be visible
   	
-  	
   	Scenario: Add new cat and check fields
   	Given i opened browser window
   	When i clicked new button
